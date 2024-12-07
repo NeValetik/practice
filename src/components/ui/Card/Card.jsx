@@ -9,8 +9,8 @@ export function Card({ params }){
     console.log(news);
     return(
         <div className="flex ">
-            <div className="flex rounded-lg w-60 h-28">
-                <Image src={news.img} alt = "img" className="object-contain w-full h-full text-black" width ="100" height="100" />
+            <div className="flex-shrink-0">
+                <Image src={news.img}   alt = "img" className="object-fill  rounded-lg w-60 h-28" width ="100" height="100" />
             </div>
             <div className="ml-4 flex-col ">
 

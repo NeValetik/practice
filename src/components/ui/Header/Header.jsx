@@ -6,8 +6,8 @@ import Title  from "./Title";
 export default function Header(){
     // const {offer} = params;
     return(
-            <div className = "flex px-32" >
-                <Title />
-            </div>
+        <div className = "flex content-center justify-center" >
+            <Title />
+        </div>
     );
 } 

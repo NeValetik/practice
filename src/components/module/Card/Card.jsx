@@ -41,10 +41,14 @@ export default function Card({ params }){
             <div className="ml-4 flex-col ">
 
                 <div className={"flex mb-1 mt-[-2.5px] font-medium hover:text-[#FF9870]"}>
-                    <Link href ={news.cparent.url.ru+"/"+news.url +"/"+ news.id} className={"text-2xl" +" "+ (visited ?"opacity-75": "")} onClick={handleVisiting}>{news.title.short} </Link>
+                    <Link href ={news.cparent.url.ru+"/"+news.url +"/"+ news.id} 
+                    className={"md:text-2xl text-xl" +" "+ (visited ?"opacity-75": "")} 
+                    onClick={handleVisiting}>
+                        {news.title.short} 
+                    </Link>
                 </div>
                 <div className="lg:flex lg:visible hidden lg:mb-[4px]">
-                    <div className={"text-base text font-normal " +" "+ (visited ?"opacity-75": "")}>
+                    <div className={"text-base font-normal " +" "+ (visited ?"opacity-75": "")}>
                         {news.description.intro}
                     </div>
                 </div>

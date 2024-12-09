@@ -13,6 +13,10 @@ module.exports = {
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      'sans': ['Helvetica', 'Arial', 'sans-serif'],
+      'body': ['"Onest"', 'sans-serif', 'Helvetica'],
+    }
   },
   plugins: [],
 };

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import FeedSources from "./FeedSources";
 
 export default function FeedDate({index, date=null}){
     // const {offer} = params;
@@ -13,11 +14,8 @@ export default function FeedDate({index, date=null}){
                     {/* here change on the dynamic time update using the utility calculateTheDate */}
                 </div>
                 { index === 0 &&
-                <div className="flex text-base text-gray-500 font-medium font-sans">
-                    <Link href='/'className="flex items-center">
-                        <Image alt="img" src="/gear.svg" className="w-[18px] h-[18px] mr-1" width="1" height="1"></Image>
-                        Источники
-                    </Link>
+                <div className="flex text-base text-gray-500 font-medium font-sans click" >
+                    <FeedSources />
                 </div>  
                 }
             </div>

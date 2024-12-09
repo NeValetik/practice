@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     
     <html lang="en">
-        <body className="bg-[#F5F5F5] px-4">
+        <body className="bg-[#F5F5F5] sm:px-4">
           <ApolloProvider>
 
             <div className="justify-items-center flex-col">

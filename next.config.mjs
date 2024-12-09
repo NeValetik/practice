@@ -6,8 +6,27 @@ const nextConfig = {
             test: /\.svg$/,
             use: ['@svgr/webpack'],
         });
-
+        
         return config;
     },
+    images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'i.simpalsmedia.com',
+            port: '',
+            pathname: '/point.md/news/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'i.simpalsmedia.com',
+            port: '',
+            pathname: '/point.md/logo/**',
+          },
+        ],
+      },
+    
+    
 };
 export default nextConfig;
+

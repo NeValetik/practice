@@ -1,6 +1,8 @@
 import "./globals.css";
 import Header from  "../components/ui/Header/Header"
-import Baner from  "../components/ui/Advertisment/Baner"
+import Baner from  "../components/module/Advertisment/Baner"
+import ApolloProvider from "@/lib/ApolloProvider";
+import GoUpButton from "@/components/module/GoUpButton/GoUpButton";
 
 export const metadata = {
   title: "Новости Молдовы-Point.md",
@@ -10,17 +12,26 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru">
+    
+    <html lang="en">
+        <body className="bg-[#F5F5F5] px-4">
+          <ApolloProvider>
 
-      <body className="bg-[#F5F5F5] px-4">
-        <div className="justify-items-center flex-col">
-        <Baner url={"/globe.svg"} />
-        <div className="sm:w-full sm:h-12"></div>
-        <Header />
-        <div className="sm:w-full sm:h-12"></div>
-        {children}
-        </div>
-      </body>
+            <div className="justify-items-center flex-col">
+            
+              <Baner url={"/globe.svg"} />
+              
+              <div className="sm:w-full sm:h-12"></div>
+                
+              <Header />
+              
+              <div className="sm:w-full sm:h-12 font-sans"></div>
+                <GoUpButton />
+                {children}
+            </div>
+          
+          </ApolloProvider>
+        </body>
     </html>
   );
 }

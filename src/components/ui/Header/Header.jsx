@@ -1,12 +1,10 @@
-"use client"
-import { useState } from "react";
 import Link from "next/link";
 import Title  from "./Title";
 
 export default function Header(){
     // const {offer} = params;
     return(
-        <div className = "flex content-center justify-center" >
+        <div className = " bg-[#F5F5F5] md:static sticky top-0 z-50 md:bg-none content-center justify-items-center w-full" >
             <Title />
         </div>
     );

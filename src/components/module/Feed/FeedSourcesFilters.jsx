@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { IoCheckboxSharp } from "react-icons/io5";
 
-export default function FeedSourcesFilters(){
+export default function FeedSourcesFilters({value,setter}){
     const [checkbox,setCheckbox] = useState(
         {items:[
                 {
@@ -33,7 +33,8 @@ export default function FeedSourcesFilters(){
                     isOn: true,
                     text: "Международные"
                 },
-            ]
+            ],
+        numberOfOff: value,
         }
     );
 
@@ -42,13 +43,20 @@ export default function FeedSourcesFilters(){
         if (label) {
             const labelText = label.getAttribute('data-name');
             setCheckbox((prevState) => {
-                // Create a new state object with updated items
+               
                 const updatedItems = prevState.items.map((item) =>
                     item.name === labelText
-                        ? { ...item, isOn: !item.isOn } // Toggle isOn for the matched item
-                        : item // Keep other items unchanged
+                        ? { ...item, isOn: !item.isOn } 
+                        : item 
                 );
-                return { ...prevState, items: updatedItems };
+                
+
+                const updatedNumberOfOff = updatedItems.reduce((count, item) => {
+                    return !item.isOn ? count + 1 : count;
+                }, 0);
+                setter(updatedNumberOfOff);
+                
+                return { ...prevState, items: updatedItems};
             });
         }
     };

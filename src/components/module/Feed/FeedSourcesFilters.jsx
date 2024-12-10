@@ -4,8 +4,13 @@ import Image from "next/image";
 import { IoCheckboxSharp } from "react-icons/io5";
 
 export default function FeedSourcesFilters({value,setter}){
-    const [checkbox,setCheckbox] = useState(
-        {items:[
+    const [checkbox,setCheckbox] = useState(() => {
+        // Initialize state from localStorage if available
+        const storedItems = JSON.parse(localStorage.getItem("items"));
+        // const storedNumberOfOff = Number(localStorage.getItem("numberOfOff"));
+
+        return {
+            items: storedItems || [
                 {
                     name: "moldovan",
                     isOn: true,
@@ -32,12 +37,29 @@ export default function FeedSourcesFilters({value,setter}){
                     name: "worldvide",
                     isOn: true,
                     text: "Международные"
-                },
+                }
             ],
-        numberOfOff: value,
-        }
-    );
+            numberOfOff: value,
+        };
+    });
 
+    // const cleanStorage = () =>{
+    //     localStorage.removeItem("items");
+    //     localStorage.removeItem("numberOfOff");
+    // }
+
+    const handleOnMount = () =>{
+        localStorage.setItem("items",JSON.stringify(checkbox.items));
+        console.log(checkbox.numberOfOff);
+        localStorage.setItem("numberOfOff",checkbox.numberOfOff);
+    }   
+
+    useEffect(() => {
+        handleOnMount(); 
+    }, [checkbox]);
+
+    
+    
     const handleOnClick = (e) => {
         const label = e.target.closest('label'); 
         if (label) {
@@ -56,7 +78,7 @@ export default function FeedSourcesFilters({value,setter}){
                 }, 0);
                 setter(updatedNumberOfOff);
                 
-                return { ...prevState, items: updatedItems};
+                return { ...prevState, items: updatedItems, numberOfOff: updatedNumberOfOff};
             });
         }
     };
@@ -65,7 +87,7 @@ export default function FeedSourcesFilters({value,setter}){
         <div
                     className="z-20 absolute w-30  -translate-x-14 translate-y-10
                     rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
-                    focus:outline-none flex-col p-2"
+                    flex-col p-2"
                     role="menu"
                 >
                     <div className="py-1 flex-col flex gap-4" role="none">

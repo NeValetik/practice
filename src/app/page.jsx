@@ -9,7 +9,6 @@ const INITIAL_NUMBER_OF_NEWS = 20
 
 export default function Home() {
   const [initialFeed,setInitialFeed] = useState(null);
-  console.log(process.env.REACT_APP_GRAPHQL_ENDPOINT);
   useEffect(()=>{
     const loadMore=async()=>{
       const data = await fetchFeed({from:0, offset:INITIAL_NUMBER_OF_NEWS})

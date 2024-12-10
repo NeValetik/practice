@@ -6,10 +6,17 @@ import FeedSourcesFilters from "./FeedSourcesFilters";
 
 export default function FeedSources(){
     const [isDropdown,setIsDropdown] = useState(false);
-    const [numberOfOff,setNumberOfOff] = useState(0);
+    const [numberOfOff,setNumberOfOff] = useState(()=>{const storedNumberOfOff = Number(localStorage.getItem("numberOfOff"));
+        return storedNumberOfOff || 0;
+    });
 
-    const handleOnClick = async() => {
-        setIsDropdown(true)
+    const handleOnClick = () => {
+        setIsDropdown(true);
+    }
+
+    const handleOnClickOutside = () => {
+        setIsDropdown(false);
+        window.location.reload();
     }
 
     return(
@@ -19,14 +26,17 @@ export default function FeedSources(){
                 <div className="flex-col">
                     Источники
                     {numberOfOff !== 0 && 
-                                        <div className=" text-xs">
+                                        <div className="text-xs">
                                         cкрыто {numberOfOff}
                                         </div>
                                         }
                 </div>
             </div>
             { isDropdown &&
-                <FeedSourcesFilters value = {numberOfOff} setter={setNumberOfOff}/>
+                <>
+                    <FeedSourcesFilters value = {numberOfOff} setter={setNumberOfOff}/>
+                    <div className="top-0 left-0 fixed w-lvw h-lvh z-10" onClick={handleOnClickOutside}></div>
+                </>
             }
         </>
     )

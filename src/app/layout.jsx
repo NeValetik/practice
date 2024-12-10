@@ -1,6 +1,6 @@
 import "./globals.css";
-import Header from  "../components/ui/Header/Header"
-import Baner from  "../components/module/Advertisment/Baner"
+import Header from  "@/components/ui/Header/Header"
+import Baner from  "@/components/module/Advertisment/Baner"
 import ApolloProvider from "@/lib/ApolloProvider";
 
 export const metadata = {

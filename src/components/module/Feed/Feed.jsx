@@ -2,11 +2,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { fetchFeed } from "../../../utils/fetchFeed";
+import { fetchFeed } from "@/utils/fetchFeed";
 import calculateTheDateOfPosting from "@/utils/calculateTheDateOfPosting";
 
 import Card from "../Card/Card";
-import Baner from "../Advertisment/Baner.jsx";
+import Baner from "../Advertisment/Baner";
 import FeedDate from "./FeedDate";
 
 const BANNER_APPEARANCE_RATE = 11;

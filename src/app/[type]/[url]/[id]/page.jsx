@@ -1,8 +1,9 @@
 "use client"
-import {use, useState, useEffect} from "react";
-import ArticleBody from "@/components/module/Article/ArticleBody";
-import { fetchFeed } from "@/utils/fetchFeed";
+import {useState, useEffect} from "react";
+
 import { fetchArticle } from "@/utils/fetchArticle";
+
+import ArticleBody from "@/components/module/Article/ArticleBody";
 
 const INITIAL_NUMBER_OF_NEWS = 20
 

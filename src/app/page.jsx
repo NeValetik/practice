@@ -1,9 +1,9 @@
 "use client"
-import Image from "next/image";
-// import Head from "next/head";
-import Feed from "@/components/module/Feed/Feed"
-import { fetchFeed } from "@/utils/fetchFeed";
 import { useEffect, useState } from "react";
+
+import { fetchFeed } from "@/utils/fetchFeed";
+
+import Feed from "@/components/module/Feed/Feed"
 
 const INITIAL_NUMBER_OF_NEWS = 20
 

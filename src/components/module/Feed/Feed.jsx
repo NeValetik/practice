@@ -1,16 +1,13 @@
 "use client"
 import { useState, useEffect, useRef } from "react";
 import { useInView } from "react-intersection-observer";
-import Image from "next/image";
-import Link from "next/link";
 
 import { fetchFeed } from "../../../utils/fetchFeed";
+import calculateTheDateOfPosting from "@/utils/calculateTheDateOfPosting";
 
 import Card from "../Card/Card";
 import Baner from "../Advertisment/Baner.jsx";
 import FeedDate from "./FeedDate";
-import calculateTheDateOfPosting from "@/utils/calculateTheDateOfPosting";
-import GoUpButton from "../GoUpButton/GoUpButton";
 
 const BANNER_APPEARANCE_RATE = 11;
 const NUMBER_OF_ARTICLE_FETCHED = 20;
@@ -38,9 +35,6 @@ export default function Feed({initialFeed}){
     },[inView]);
 
     return(
-    <>
-        <GoUpButton />
-
         <div className="p-6 bg-[#FFFFFF] rounded-lg w-full max-w-5xl flex flex-col text-gray-800">
             {/* <FeedDate date={"Сегодня"}/> */}
             
@@ -70,7 +64,5 @@ export default function Feed({initialFeed}){
             }
             </div>
         </div>
-
-    </>
     );
 }

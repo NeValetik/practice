@@ -1,13 +1,11 @@
 "use client"
 import { useEffect, useState } from "react";
-import Image from "next/image";
+
 import { IoCheckboxSharp } from "react-icons/io5";
 
 export default function FeedSourcesFilters({value,setter}){
     const [checkbox,setCheckbox] = useState(() => {
-        // Initialize state from localStorage if available
         const storedItems = JSON.parse(localStorage.getItem("items"));
-        // const storedNumberOfOff = Number(localStorage.getItem("numberOfOff"));
 
         return {
             items: storedItems || [

@@ -1,11 +1,6 @@
 "use client"
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
-
-import { fetchFeed } from "../../../utils/fetchFeed";
-
-const NUMBER_OF_ARTICLE_FETCHED = 20;
 
 export default function ArticleBody({fetchedArticle}){
     const [article,setArticle] = useState(fetchedArticle);

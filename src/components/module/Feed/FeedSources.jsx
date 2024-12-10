@@ -1,7 +1,7 @@
 "use client"
-import Link from "next/link";
+import { useState } from "react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+
 import FeedSourcesFilters from "./FeedSourcesFilters";
 
 export default function FeedSources(){

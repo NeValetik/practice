@@ -16,27 +16,33 @@ export default function FeedSourcesFilters({value,setter}){
                     isOn: true,
                     text: "Молдавские",
                     color: "text-[#808080]",
-                    isNotChangable: true
+                    isNotChangable: true,
+                    affiliation: 1,
                 },
                 {
                     name: "romanian",
                     isOn: true,
-                    text: "Румынские"
+                    text: "Румынские",
+                    affiliation: 2,
                 },
                 {
                     name: "russian",
                     isOn: true,
-                    text: "Российские"
+                    text: "Российские",
+                    affiliation: 3,
                 },
                 {
                     name: "ukranian",
                     isOn: true,
-                    text: "Украинские"
+                    text: "Украинские",
+                    affiliation: 4,
+
                 },
                 {
                     name: "worldvide",
                     isOn: true,
-                    text: "Международные"
+                    text: "Международные",
+                    affiliation: 5,
                 }
             ],
             numberOfOff: value,
@@ -50,12 +56,12 @@ export default function FeedSourcesFilters({value,setter}){
 
     const handleOnMount = () =>{
         localStorage.setItem("items",JSON.stringify(checkbox.items));
-        console.log(checkbox.numberOfOff);
         localStorage.setItem("numberOfOff",checkbox.numberOfOff);
     }   
 
     useEffect(() => {
         handleOnMount(); 
+        // cleanStorage();
     }, [checkbox]);
 
     

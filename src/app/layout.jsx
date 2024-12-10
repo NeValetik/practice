@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
               <Header />
               
               <div className="sm:w-full sm:h-12 font-sans"></div>
-                <GoUpButton />
+                {/* <GoUpButton /> */}
                 {children}
             </div>
           

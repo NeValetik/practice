@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from  "@/components/ui/Header/Header"
 import Baner from  "@/components/module/Advertisment/Baner"
 import ApolloProvider from "@/lib/ApolloProvider";
+import GoUpButton from "@/components/module/GoUpButton/GoUpButton";
 
 export const metadata = {
   title: "Новости Молдовы-Point.md",
@@ -31,7 +32,7 @@ export default function RootLayout({ children }:RootLayoutProps) {
               <Header />
               
               <div className="sm:w-full sm:h-12 font-sans"></div>
-                {/* <GoUpButton /> */}
+                <GoUpButton />
                 {children}
             </div>
           

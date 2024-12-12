@@ -31,9 +31,9 @@ export default function RootLayout({ children }:RootLayoutProps) {
                 
               <Header />
               
-              <div className="sm:w-full sm:h-12 font-sans"></div>
-                <GoUpButton />
-                {children}
+              <div className="sm:w-full sm:h-12 font-sans flex"></div>
+                  <GoUpButton />
+                  {children}
             </div>
           
           </ApolloProvider>

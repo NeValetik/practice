@@ -94,7 +94,6 @@ export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
                         : item 
                 );
                 
-
                 const updatedNumberOfOff = updatedItems.reduce((count, item) => {
                     return !item.isOn ? count + 1 : count;
                 }, 0);
@@ -107,7 +106,7 @@ export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
 
     return(
         <div
-                    className="z-20 absolute w-30  -translate-x-14 translate-y-10
+                    className="z-20 fixed w-30  -translate-x-14 translate-y-10
                     rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5
                     flex-col p-2"
                     role="menu"

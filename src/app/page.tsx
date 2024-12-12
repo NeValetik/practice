@@ -7,7 +7,7 @@ import Feed from "@/components/module/Feed/Feed"
 import { Item } from "@/components/module/Feed/FeedSourcesFilters"; 
 import { QueryContentReturn } from "@/utils/queries";
 
-const INITIAL_NUMBER_OF_NEWS = 20
+const INITIAL_NUMBER_OF_NEWS:number = 20;
 
 export default function Home() {
   const [initialFeed,setInitialFeed] = useState<QueryContentReturn[] | null>(null);
@@ -28,7 +28,9 @@ export default function Home() {
         setInitialFeed(data);
       }
     }
+
     initialData();
+  
   },[])
   return(
   <>

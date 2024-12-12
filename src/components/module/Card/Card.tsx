@@ -6,12 +6,17 @@ import Image from "next/image";
 import processStringsInformation from '@/utils/processIntroStringsInformation';
 import convertTimeStampToDate from "@/utils/convertTimeStampToDate";
 import removeBadSigns from "@/utils/removeBadSigns";
+import { QueryContentReturn } from "@/utils/queries";
+
+interface CardParams {
+    params: QueryContentReturn
+} 
 
 //TODO: change here font and update the logic after fetch
-export default function Card({ params }){
+export default function Card({ params }:CardParams){
     const news = {...params,title:{...params.title,short: removeBadSigns(params.title.short)}, dates:{...params.dates, posted:convertTimeStampToDate(params.dates.posted)},description:{...params.description,
         intro: processStringsInformation(params.description.intro),}};
-    const [visited,setVisited] =useState(false);
+    const [visited,setVisited] = useState<boolean>(false);
     // consoleid);
     const handleVisiting = () =>
     {
@@ -25,7 +30,6 @@ export default function Card({ params }){
         if (visited){
             localStorage.setItem(news.id,visited);
         }
-        localStorage.setItem("current_news",news.id);
     },[visited])
     
     return(

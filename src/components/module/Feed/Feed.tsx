@@ -44,7 +44,7 @@ export default function Feed({initialFeed}:InitialFeed){
             {/* <FeedDate date={"Сегодня"}/> */}
             
             <div className="flex flex-col w-full gap-6 flex-grow" >
-            { news && news.map((article, index) => {
+            {news.map((article, index) => {
                 const articleDate = calculateTheDateOfPosting(article.dates.posted);
 
                 const showDateHeader = index === 0 || articleDate !== lastDisplayedDateRef.current;

@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 
 import { FaArrowUp } from "react-icons/fa";
 
+const BUTTON_SCROLL_CONST:number =230;
+
 export default function GoUpButton(){
     const [isVisible,setIsVisible] = useState<boolean>(false)
 
     useEffect(()=>{
         const toggleVisibility = () => {
-            setIsVisible(window.scrollY > 230);
+            setIsVisible(window.scrollY > BUTTON_SCROLL_CONST);
         }
         window.addEventListener("scroll",toggleVisibility);
 
@@ -20,10 +22,9 @@ export default function GoUpButton(){
         window.scrollTo({ top:0 });
     }
 
-    //TODO:Make the button to be sticky to the feed. 
     return(
-        <div className={`fixed z-0 md:bottom-20 md:left-48 bottom-10 ${
-            isVisible ? "opacity-100" : "opacity-0"}`} >
+        <div className={"fixed z-0 md:bottom-20 md:left-48 bottom-10"+ " " + 
+            (isVisible ? "opacity-100" : "opacity-0")} >
             <button className="rounded-lg m-2 bg-gray-200" disabled={!isVisible} onClick={handleOnClick}>
                 <FaArrowUp className="bg-gray-200  m-2 rounded-lg h-[15px] w-[15px] text-white"/>
             </button>

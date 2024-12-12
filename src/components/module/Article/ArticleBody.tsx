@@ -1,8 +1,13 @@
 "use client"
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect,  } from "react";
 import Image from "next/image";
+import { QueryContentArticleReturn } from "@/utils/queries";
 
-export default function ArticleBody({fetchedArticle}){
+interface ArticleBodyParams {
+    fetchedArticle: QueryContentArticleReturn
+} 
+
+export default function ArticleBody({fetchedArticle}:ArticleBodyParams){
     const [article,setArticle] = useState(fetchedArticle);
     useEffect(()=>{
         setArticle(fetchedArticle)

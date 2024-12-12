@@ -19,6 +19,15 @@ interface Parents {
   attachment: string;
 }
 
+interface Url {
+  ru: string;
+}
+
+interface CParent {
+  id: string;
+  url: Url;
+}
+
 interface ContentWrapper<T> {
   contents: T[];
 }
@@ -33,7 +42,8 @@ export interface QueryContentReturn {
   description: Description;
   dates: Dates;
   thumbnail: string;
-  parents: Parents[];
+  parents: Parents[] | [];
+  cparent: CParent;
 }
 
 export interface QueryContentArticleReturn {
@@ -43,7 +53,7 @@ export interface QueryContentArticleReturn {
   description: Description;
   dates: Dates;
   thumbnail: string;
-  parents: Parents[];
+  parents: Parents[] | [];
 }
 
 const queryContent = (from:number,offset:number,affiliations:number[]) =>gql(`

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 import { fetchFeed } from "@/utils/fetchFeed";
 
-import Feed from "@/components/module/Feed/Feed"
-import { Item } from "@/components/module/Feed/FeedSourcesFilters"; 
+import Feed from "@/components/module/Feed"
+import { Item } from "@/components/module/Feed/components/SourcesFilters"; 
 import { QueryContentReturn } from "@/utils/queries";
 
 const INITIAL_NUMBER_OF_NEWS:number = 20;
@@ -33,10 +33,10 @@ export default function Home() {
   
   },[])
   return(
-  <>
-    <div className="flex">
-      {initialFeed && <Feed initialFeed={initialFeed} />}
-    </div>
-  </>
+    <>
+      <div className="flex">
+        {initialFeed && <Feed initialFeed={initialFeed} />}
+      </div>
+    </>
   );
 }

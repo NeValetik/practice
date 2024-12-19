@@ -2,10 +2,10 @@
 
 export default function ArticlePage() {
   
-    return(
-      <div className="flex">
+  return(
+    <div className="flex">
           loading
-      </div>
-    );
-  }
+    </div>
+  );
+}
   

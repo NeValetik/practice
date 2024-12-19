@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
 import "./globals.css";
-import Header from  "@/components/ui/Header/Header"
-import Baner from  "@/components/module/Advertisment/Baner"
+import Header from  "@/components/ui/Header"
+import Baner from  "@/components/module/Banner"
 import ApolloProvider from "@/lib/ApolloProvider";
-import GoUpButton from "@/components/module/GoUpButton/GoUpButton";
+import GoUpButton from "@/components/module/GoUpButton";
 
 export const metadata = {
   title: "Новости Молдовы-Point.md",
@@ -20,24 +20,24 @@ export default function RootLayout({ children }:RootLayoutProps) {
   return (
     
     <html lang="en">
-        <body className="bg-[#F5F5F5] sm:px-4">
-          <ApolloProvider>
+      <body className="bg-[#F5F5F5] sm:px-4">
+        <ApolloProvider>
 
-            <div className="justify-items-center flex-col">
+          <div className="justify-items-center flex-col">
             
-              <Baner url={"/globe.svg"} />
+            <Baner url={"/globe.svg"} />
               
-              <div className="sm:w-full sm:h-12"></div>
+            <div className="sm:w-full sm:h-12"></div>
                 
-              <Header />
+            <Header />
               
-              <div className="sm:w-full sm:h-12 font-sans flex"></div>
-                  <GoUpButton />
-                  {children}
-            </div>
+            <div className="sm:w-full sm:h-12 font-sans flex"></div>
+            <GoUpButton />
+            {children}
+          </div>
           
-          </ApolloProvider>
-        </body>
+        </ApolloProvider>
+      </body>
     </html>
   );
 }

@@ -11,5 +11,5 @@ interface ApolloProviderProps {
 export default function ApolloProvider({ children } : ApolloProviderProps) {
   return (<Provider client={client}>
     {children}
-    </Provider>);
+  </Provider>);
 }

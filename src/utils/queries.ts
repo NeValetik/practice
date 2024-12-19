@@ -56,7 +56,7 @@ export interface QueryContentArticleReturn {
   parents: Parents[] | [];
 }
 
-const queryContent = (from:number,offset:number,affiliations:number[]) =>gql(`
+const queryContent = gql`
   query GetData {
     contents(
         project_id: "5107de83-f208-4ca4-87ed-9b69d58d16e1", 
@@ -83,9 +83,9 @@ const queryContent = (from:number,offset:number,affiliations:number[]) =>gql(`
         }
       }
   } 
-`);
+`;
 
-export const queryContentArticle = (id:string) =>gql(`
+export const queryContentArticle = gql`
     query GetData {
       content(
           project_id: "5107de83-f208-4ca4-87ed-9b69d58d16e1", 
@@ -105,6 +105,6 @@ export const queryContentArticle = (id:string) =>gql(`
   
         }
   } 
-  `);
+  `;
 
 export default queryContent; 

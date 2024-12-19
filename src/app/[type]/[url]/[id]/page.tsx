@@ -3,10 +3,8 @@ import {useState, useEffect} from "react";
 
 import { fetchArticle } from "@/utils/fetchArticle";
 
-import ArticleBody from "@/components/module/Article/ArticleBody";
+import ArticleBody from "@/components/module/Article";
 import { QueryContentArticleReturn } from "@/utils/queries";
-
-const INITIAL_NUMBER_OF_NEWS = 20
 
 interface ArticleParams {
   id: string;
@@ -24,10 +22,10 @@ export default function ArticlePage({params} : {params: ArticleParams}) {
     }
 
     handle();
-  },[])
+  })
   return(
     <div className="flex">
-        <ArticleBody fetchedArticle={article} />
+      <ArticleBody fetchedArticle={article} />
     </div>
   );
 }

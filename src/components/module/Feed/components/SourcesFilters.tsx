@@ -1,5 +1,7 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { makeVar, useReactiveVar  } from "@apollo/client";
 
 import { IoCheckboxSharp } from "react-icons/io5";
 
@@ -17,77 +19,74 @@ interface FeedFiltersParams{
   setter:React.Dispatch<React.SetStateAction<number>>;
 }
 
+// export const checkbox = makeVar();
+export const checkbox = makeVar((() => {
+  const storedItems:Item[]|null = JSON.parse(localStorage.getItem("items") || "[]");
+
+  return {
+    items: storedItems || [
+      {
+        name: "moldovan",
+        isOn: true,
+        text: "Молдавские",
+        color: "text-[#808080]",
+        isNotChangable: true,
+        affiliation: 1,
+      },
+      {
+        name: "romanian",
+        isOn: true,
+        text: "Румынские",
+        affiliation: 2,
+      },
+      {
+        name: "russian",
+        isOn: true,
+        text: "Российские",
+        affiliation: 3,
+      },
+      {
+        name: "ukranian",
+        isOn: true,
+        text: "Украинские",
+        affiliation: 4,
+
+      },
+      {
+        name: "worldvide",
+        isOn: true,
+        text: "Международные",
+        affiliation: 5,
+      }
+    ],
+    numberOfOff: 0,
+  };
+})());
+
 const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
-  const [checkbox,setCheckbox] = useState<{
-                                  items: Item[];
-                                  numberOfOff: number;
-                                }>
-                                (() => {
-                                  const storedItems:Item[]|null = JSON.parse(localStorage.getItem("items") || "[]");
-
-                                  return {
-                                    items: storedItems || [
-                                      {
-                                        name: "moldovan",
-                                        isOn: true,
-                                        text: "Молдавские",
-                                        color: "text-[#808080]",
-                                        isNotChangable: true,
-                                        affiliation: 1,
-                                      },
-                                      {
-                                        name: "romanian",
-                                        isOn: true,
-                                        text: "Румынские",
-                                        affiliation: 2,
-                                      },
-                                      {
-                                        name: "russian",
-                                        isOn: true,
-                                        text: "Российские",
-                                        affiliation: 3,
-                                      },
-                                      {
-                                        name: "ukranian",
-                                        isOn: true,
-                                        text: "Украинские",
-                                        affiliation: 4,
-
-                                      },
-                                      {
-                                        name: "worldvide",
-                                        isOn: true,
-                                        text: "Международные",
-                                        affiliation: 5,
-                                      }
-                                    ],
-                                    numberOfOff: value,
-                                  };
-                                });
+  
 
   // const cleanStorage = () =>{
   //     localStorage.removeItem("items");
   //     localStorage.removeItem("numberOfOff");  
   //     localStorage.removeItem("affiliations");
   // }
-
-     
+  const checkboxLocal = useReactiveVar(checkbox);
 
   useEffect(() => {
-    const handleOnMount = () =>{
-      localStorage.setItem("items",JSON.stringify(checkbox.items));
-      localStorage.setItem("numberOfOff",checkbox.numberOfOff.toString());
-      localStorage.setItem("affiliations",JSON.stringify(checkbox.items.filter((item:Item) => item.isOn).map((item)=> item.affiliation)))
-    }  
-    handleOnMount(); 
-    // cleanStorage();
-  }, [checkbox]);
+    localStorage.setItem("items", JSON.stringify(checkboxLocal.items));
+    localStorage.setItem("numberOfOff", checkboxLocal.numberOfOff.toString());
+    localStorage.setItem(
+      "affiliations",
+      JSON.stringify(checkboxLocal.items.filter((item: Item) => item.isOn).map((item) => item.affiliation))
+    );
+  }, [checkboxLocal.items, checkboxLocal.numberOfOff]);
 
     
   const handleOnClick = (labelText:string|null) => {
-    setCheckbox((prevState) => {
+    checkbox((() => {
               
-      const updatedItems = prevState.items.map((item) =>
+      const updatedItems = checkboxLocal?.items.map((item) =>
         item.name === labelText
           ? { ...item, isOn: !item.isOn } 
           : item 
@@ -98,15 +97,15 @@ const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
       }, 0);
       setter(updatedNumberOfOff);
               
-      return { ...prevState, items: updatedItems, numberOfOff: updatedNumberOfOff};
-    });
+      return { ...checkboxLocal, items: updatedItems, numberOfOff: updatedNumberOfOff};
+    })());
   };
   
   const handleClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) =>{
     const label =(e.target as Element).closest('label'); 
     if (label) {
       const labelText = label.getAttribute('id');
-      if (labelText !== checkbox.items[0].name) handleOnClick(labelText)
+      if (labelText !== checkboxLocal.items[0].name) handleOnClick(labelText)
     }
   }
 
@@ -118,7 +117,7 @@ const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
       role="menu"
     >
       <div className="py-1 flex-col flex gap-4" role="none">
-        {checkbox.items.map((item,index)=>{
+        {checkboxLocal.items.map((item,index)=>{
           return (
             <label
               id={item.name}
@@ -146,7 +145,6 @@ const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
       </div>
     </div>
   )
-     
 } 
 
 export default FeedSourcesFilters;

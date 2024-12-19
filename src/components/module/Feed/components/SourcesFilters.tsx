@@ -63,7 +63,7 @@ export const checkbox = makeVar((() => {
   };
 })());
 
-const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
+const FeedSourcesFilters = ({setter}:FeedFiltersParams) => {
   
 
   // const cleanStorage = () =>{

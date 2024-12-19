@@ -26,17 +26,17 @@ const FeedSources=()=>{
         <div className="flex-col">
                     Источники
           {numberOfOff !== 0 && 
-                                        <div className="text-xs">
-                                        cкрыто {numberOfOff}
-                                        </div>
-          }
+            <div className="text-xs">
+            cкрыто {numberOfOff}
+            </div>
+}
         </div>
       </div>
       { isDropdown &&
-                <>
-                  <FeedSourcesFilters value = {numberOfOff} setter={setNumberOfOff}/>
-                  <div className="top-0 left-0 fixed w-lvw h-lvh z-10" onClick={handleOnClickOutside}></div>
-                </>
+        <>
+          <FeedSourcesFilters value = {numberOfOff} setter={setNumberOfOff}/>
+          <div className="top-0 left-0 fixed w-lvw h-lvh z-10" onClick={handleOnClickOutside}></div>
+        </>
       }
     </div>  
   )

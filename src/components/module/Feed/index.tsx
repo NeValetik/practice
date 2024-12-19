@@ -4,8 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useQuery, useReactiveVar } from '@apollo/client';
 
 import calculateTheDateOfPosting from '@/utils/calculateTheDateOfPosting';
-// import { Item } from "@/components/module/Feed/components/SourcesFilters"; 
-import GET_CONTENTS from '@/utils/queries';
+import GET_CONTENTS, {Contents} from '@/utils/queries';
 
 import Card from '../Card';
 import Baner from '../Baner';
@@ -58,7 +57,7 @@ const Feed = () => {
     return(
       <div className="p-6 bg-[#FFFFFF] rounded-lg w-full max-w-5xl flex flex-col text-gray-800">
         <div className="flex flex-col w-full gap-6 flex-grow" >
-          {data.contents.map((article, index) => {
+          {data.contents.map((article:Contents, index:number) => {
             const articleDate = calculateTheDateOfPosting(article.dates.posted);
 
             const showDateHeader = index === 0 || articleDate !== lastDisplayedDateRef.current;

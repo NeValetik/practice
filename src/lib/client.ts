@@ -15,12 +15,8 @@ const cache = new InMemoryCache({
 });
 
 export const affiliationsVar = makeVar(
-  JSON.parse( localStorage.getItem('affiliations') || '[]' )
+  JSON.parse( localStorage.getItem('affiliations') || '[1,2,3,4,5]' )
 );
-
-affiliationsVar.onNextChange(newValue => {
-  localStorage.setItem('affiliations', JSON.stringify(newValue));
-});
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_REACT_APP_GRAPHQL_ENDPOINT,

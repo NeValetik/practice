@@ -5,7 +5,7 @@ import { FaArrowUp } from 'react-icons/fa';
 
 const BUTTON_SCROLL_CONST:number = 230;
 
-export default function GoUpButton(){
+const GoUpButton = () =>{
   const [isVisible,setIsVisible] = useState<boolean>(false)
 
   useEffect(()=>{
@@ -31,3 +31,5 @@ export default function GoUpButton(){
     </div>
   );
 } 
+
+export default GoUpButton;

@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 
 import ArticleBody from '@/components/module/ArticleBody';
 import { GET_CONTENT } from '@/utils/queries';
-import { use } from 'react';
 
 interface ArticleParams {
   contentType: string;
@@ -12,15 +11,13 @@ interface ArticleParams {
 }
 
 const ArticlePage = ({params} : {params: ArticleParams}) => {
-  const param:ArticleParams = use(params);
+  const { contentType, url } = params;
   const { loading, error, data } = useQuery(GET_CONTENT,{ 
     variables: {
-      'full_url':`${param.contentType}/${param.url}`
+      'full_url':`${contentType}/${url}`
     },
     notifyOnNetworkStatusChange:true
-
   }
-    
   );
   
   if (loading) return <>Loading...</>

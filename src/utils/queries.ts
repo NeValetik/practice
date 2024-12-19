@@ -28,14 +28,7 @@ interface CParent {
   url: Url;
 }
 
-interface ContentWrapper<T> {
-  contents: T[];
-}
-
-export type ContentQueryReturnType = ContentWrapper<QueryContentReturn>
-export type ContentQueryArticleReturnType = ContentWrapper<QueryContentArticleReturn>
-
-export interface QueryContentReturn {
+export interface Contents {
   id: string;
   url: string;
   title: Title;
@@ -46,7 +39,7 @@ export interface QueryContentReturn {
   cparent: CParent;
 }
 
-export interface QueryContentArticleReturn {
+export interface Content {
   id: string;
   url: string;
   title: Title;
@@ -54,10 +47,35 @@ export interface QueryContentArticleReturn {
   dates: Dates;
   thumbnail: string;
   parents: Parents[] | [];
+  cparent: CParent;
 }
-// clientAffiliations @client @export(as: "affiliations")
-// $affiliations
-//$affiliations: [Int]!
+
+
+export interface QueryContentsReturn {
+  contents:{
+    id: string;
+    url: string;
+    title: Title;
+    description: Description;
+    dates: Dates;
+    thumbnail: string;
+    parents: Parents[] | [];
+    cparent: CParent;
+  }
+}
+
+export interface QueryContentArticleReturn {
+  content:{
+    id: string;
+    url: string;
+    title: Title;
+    description: Description;
+    dates: Dates;
+    thumbnail: string;
+    parents: Parents[] | [];
+  }
+}
+
 const GET_CONTENTS = gql`
   query GetData($from: Int, $offset: Int, $affiliations: [Int]!) {
     contents(

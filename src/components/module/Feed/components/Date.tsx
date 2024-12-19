@@ -3,7 +3,7 @@ interface FeedDateParams{
     date:string | null;
 }
 
-export default function FeedDate({date=null}:FeedDateParams){
+const FeedDate =({date=null}:FeedDateParams) => {
   // const {offer} = params;
   return(
     <div className="text-[28px] font-bold font-sans">
@@ -11,3 +11,5 @@ export default function FeedDate({date=null}:FeedDateParams){
     </div>
   );
 } 
+
+export default FeedDate;

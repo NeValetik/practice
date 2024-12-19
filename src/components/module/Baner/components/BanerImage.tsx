@@ -1,5 +1,5 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
 
 
 interface BanerImage{
@@ -11,13 +11,13 @@ interface BanerImage{
 export default function BanerImage({url,imageUrl,className}:BanerImage){
   // const {url} = url;
   return(
-    <Link href={url? url :"/"}>
+    <Link href={url? url :'/'}>
       <Image 
-        src={imageUrl? imageUrl: "/globe.svg"} 
+        src={imageUrl? imageUrl: '/globe.svg'} 
         alt="Banner" 
         width="1"
         height="1"
-        className={"w-[920px] h-52 " + className}
+        className={'w-[920px] h-52 ' + className}
       />
     </Link>        
   );

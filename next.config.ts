@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import { NextConfig } from "next";
+import { NextConfig } from 'next';
 const nextConfig = {
   reactStrictMode: true,
   webpack(config:NextConfig) {

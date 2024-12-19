@@ -1,12 +1,12 @@
-"use client"
-import { useState } from "react";
-import Image from "next/image";
+'use client'
+import { useState } from 'react';
+import Image from 'next/image';
 
-import FeedSourcesFilters from "./SourcesFilters";
+import FeedSourcesFilters from './SourcesFilters';
 
-export default function FeedSources(){
+const FeedSources=()=>{
   const [isDropdown,setIsDropdown] = useState<boolean>(false);
-  const [numberOfOff,setNumberOfOff] = useState<number>(()=>{const storedNumberOfOff = Number(localStorage.getItem("numberOfOff"));
+  const [numberOfOff,setNumberOfOff] = useState<number>(()=>{const storedNumberOfOff = Number(localStorage.getItem('numberOfOff'));
     return storedNumberOfOff || 0;
   });
 
@@ -21,8 +21,8 @@ export default function FeedSources(){
 
   return(
     <div className="flex text-base text-gray-500 font-medium font-sans click" >
-      <div className={"flex items-center" + " " + (isDropdown&& "text-[#FF4700]")}  onClick={handleOnClick} >
-        <Image alt="img" src={!isDropdown ? "/gear.svg" : "/gearorange.svg"} className={"w-[18px] h-[18px] mr-1"} width="1" height="1"></Image>
+      <div className={'flex items-center' + ' ' + (isDropdown&& 'text-[#FF4700]')}  onClick={handleOnClick} >
+        <Image alt="img" src={!isDropdown ? '/gear.svg' : '/gearorange.svg'} className={'w-[18px] h-[18px] mr-1'} width="1" height="1"></Image>
         <div className="flex-col">
                     Источники
           {numberOfOff !== 0 && 
@@ -41,3 +41,5 @@ export default function FeedSources(){
     </div>  
   )
 } 
+
+export default FeedSources;

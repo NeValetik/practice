@@ -1,14 +1,14 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import "./globals.css";
-import Header from  "@/components/ui/Header"
-import Baner from  "@/components/module/Banner"
-import ApolloProvider from "@/lib/ApolloProvider";
-import GoUpButton from "@/components/module/GoUpButton";
+import './globals.css';
+import Header from  '@/components/ui/Header'
+import Baner from  '@/components/module/Baner'
+import ApolloProvider from '@/lib/ApolloProvider';
+import GoUpButton from '@/components/module/GoUpButton';
 
 export const metadata = {
-  title: "Новости Молдовы-Point.md",
-  description: "nothing",
+  title: 'Новости Молдовы-Point.md',
+  description: 'nothing',
   
 };
 
@@ -16,7 +16,7 @@ interface RootLayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }:RootLayoutProps) {
+const RootLayout = ({ children }:RootLayoutProps) => {
   return (
     
     <html lang="en">
@@ -25,7 +25,7 @@ export default function RootLayout({ children }:RootLayoutProps) {
 
           <div className="justify-items-center flex-col">
             
-            <Baner url={"/globe.svg"} />
+            <Baner url={'/globe.svg'} />
               
             <div className="sm:w-full sm:h-12"></div>
                 
@@ -41,3 +41,5 @@ export default function RootLayout({ children }:RootLayoutProps) {
     </html>
   );
 }
+
+export default RootLayout;

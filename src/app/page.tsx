@@ -1,12 +1,12 @@
-"use client"
 // import { fetchFeed } from "@/utils/fetchFeed";
+import Feed from '@/components/module/Feed'
 
-import Feed from "@/components/module/Feed"
-
-export default function Home() {
+const Home= async() =>{
   return(
     <div className="flex">
       <Feed/>
     </div>
   );
 }
+
+export default Home;

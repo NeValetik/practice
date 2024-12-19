@@ -1,9 +1,9 @@
-"use client"
+'use client'
 export default function ArticlePage() {
   
   return(
     <div className="flex">
-        error
+        error here
     </div>
   );
 }

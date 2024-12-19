@@ -1,30 +1,38 @@
-"use client"
-import { useQuery } from "@apollo/client";
+'use client'
+import { useQuery } from '@apollo/client';
 
-import ArticleBody from "@/components/module/Article";
-import { GET_CONTENT } from "@/utils/queries";
+import ArticleBody from '@/components/module/ArticleBody';
+import { GET_CONTENT } from '@/utils/queries';
+import { use } from 'react';
 
 interface ArticleParams {
-  title: string;
-  content: string;
   contentType: string;
   url: string
   // Add other fields as necessary
 }
 
-export default function ArticlePage({params} : {params: ArticleParams}) {
+const ArticlePage = ({params} : {params: ArticleParams}) => {
+  const param:ArticleParams = use(params);
   const { loading, error, data } = useQuery(GET_CONTENT,{ 
     variables: {
-      "full_url":`${params.contentType}/${params.url}`
-    }
+      'full_url':`${param.contentType}/${param.url}`
+    },
+    notifyOnNetworkStatusChange:true
+
   }
+    
   );
   
-  if (loading) return <>...Loading</>
-  if (error) return <>error</>
+  if (loading) return <>Loading...</>
+  if (error) return <>error here</>
   return(
     <div className="flex">
-      <ArticleBody fetchedArticle={data} />
+      {
+        data &&
+        <ArticleBody fetchedArticle={data} />
+      }
     </div>
   );
 }
+
+export default ArticlePage;

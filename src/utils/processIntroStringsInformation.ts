@@ -1,4 +1,4 @@
-import removeBadSigns from "./removeBadSigns";
+import removeBadSigns from './removeBadSigns';
 
 export default function processStringsInformation(text:string):string{
   const maxLength:number = 135; 

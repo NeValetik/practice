@@ -1,9 +1,9 @@
-"use client"
-import { useEffect } from "react";
+'use client'
+import { useEffect } from 'react';
 
-import { makeVar, useReactiveVar  } from "@apollo/client";
+import { makeVar, useReactiveVar  } from '@apollo/client';
 
-import { IoCheckboxSharp } from "react-icons/io5";
+import { IoCheckboxSharp } from 'react-icons/io5';
 
 export interface Item {
   name:string;
@@ -21,41 +21,41 @@ interface FeedFiltersParams{
 
 // export const checkbox = makeVar();
 export const checkbox = makeVar((() => {
-  const storedItems:Item[]|null = JSON.parse(localStorage.getItem("items") || "[]");
+  const storedItems:Item[]|null = JSON.parse(localStorage.getItem('items') || '[]');
 
   return {
     items: storedItems || [
       {
-        name: "moldovan",
+        name: 'moldovan',
         isOn: true,
-        text: "Молдавские",
-        color: "text-[#808080]",
+        text: 'Молдавские',
+        color: 'text-[#808080]',
         isNotChangable: true,
         affiliation: 1,
       },
       {
-        name: "romanian",
+        name: 'romanian',
         isOn: true,
-        text: "Румынские",
+        text: 'Румынские',
         affiliation: 2,
       },
       {
-        name: "russian",
+        name: 'russian',
         isOn: true,
-        text: "Российские",
+        text: 'Российские',
         affiliation: 3,
       },
       {
-        name: "ukranian",
+        name: 'ukranian',
         isOn: true,
-        text: "Украинские",
+        text: 'Украинские',
         affiliation: 4,
 
       },
       {
-        name: "worldvide",
+        name: 'worldvide',
         isOn: true,
-        text: "Международные",
+        text: 'Международные',
         affiliation: 5,
       }
     ],
@@ -74,10 +74,10 @@ const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
   const checkboxLocal = useReactiveVar(checkbox);
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(checkboxLocal.items));
-    localStorage.setItem("numberOfOff", checkboxLocal.numberOfOff.toString());
+    localStorage.setItem('items', JSON.stringify(checkboxLocal.items));
+    localStorage.setItem('numberOfOff', checkboxLocal.numberOfOff.toString());
     localStorage.setItem(
-      "affiliations",
+      'affiliations',
       JSON.stringify(checkboxLocal.items.filter((item: Item) => item.isOn).map((item) => item.affiliation))
     );
   }, [checkboxLocal.items, checkboxLocal.numberOfOff]);
@@ -117,21 +117,22 @@ const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
       role="menu"
     >
       <div className="py-1 flex-col flex gap-4" role="none">
-        {checkboxLocal.items.map((item,index)=>{
+        {checkboxLocal.items.map((item,index)=>
+        {
           return (
             <label
               id={item.name}
               className="flex text-sm text-gray-700 
-                                    items-center font-body"
+                                      items-center font-body"
               role="menuitem"
               onClick={handleClick}
               key={index}
             >
               <div>
                 { item.isOn?
-                  <IoCheckboxSharp  className={"w-5 h-5 rounded-full"+' '+(item.color? item.color: "text-[#FF4700]")} />
+                  <IoCheckboxSharp  className={'w-5 h-5 rounded-full'+' '+(item.color? item.color: 'text-[#FF4700]')} />
                   :
-                  <IoCheckboxSharp  className={"w-5 h-5 rounded-lg text-white border-[1px]"} />
+                  <IoCheckboxSharp  className={'w-5 h-5 rounded-lg text-white border-[1px]'} />
                 }
               </div>
               <div className="ml-2 text-base">
@@ -141,7 +142,6 @@ const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
           );
         })
         }
-                       
       </div>
     </div>
   )

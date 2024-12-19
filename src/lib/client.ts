@@ -1,4 +1,4 @@
-import { ApolloClient, InMemoryCache, gql, makeVar } from '@apollo/client';
+import { ApolloClient, InMemoryCache, makeVar } from '@apollo/client';
 
 const cache = new InMemoryCache({
   typePolicies: {

@@ -14,7 +14,7 @@ interface CardParams {
 
 //TODO: change here font and update the logic after fetch
 export default function Card({ params }:CardParams){
-  const news = {...params,title:{...params.title,short: removeBadSigns(params.title.short)}, dates:{...params.dates, posted:convertTimeStampToDate(params.dates.posted)},description:{...params.description,
+  const news:Contents = {...params,title:{...params.title,short: removeBadSigns(params.title.short)}, dates:{...params.dates, posted:convertTimeStampToDate(params.dates.posted)},description:{...params.description,
     intro: processStringsInformation(params.description.intro),}};
   const [visited,setVisited] = useState<boolean>(false);
   const handleVisiting = () =>

@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 
 import { makeVar, useReactiveVar  } from '@apollo/client';
+import { affiliationsVar } from '@/lib/client'
 
 import { IoCheckboxSharp } from 'react-icons/io5';
 
@@ -22,7 +23,6 @@ interface FeedFiltersParams{
 // export const checkbox = makeVar();
 export const checkbox = makeVar((() => {
   const storedItems:Item[]|null = JSON.parse(localStorage.getItem('items') || '[]');
-
   return {
     items: storedItems || [
       {
@@ -64,8 +64,6 @@ export const checkbox = makeVar((() => {
 })());
 
 const FeedSourcesFilters = ({setter}:FeedFiltersParams) => {
-  
-
   // const cleanStorage = () =>{
   //     localStorage.removeItem("items");
   //     localStorage.removeItem("numberOfOff");  

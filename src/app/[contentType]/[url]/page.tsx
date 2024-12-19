@@ -21,7 +21,7 @@ const ArticlePage = ({params} : {params: ArticleParams}) => {
   );
   
   if (loading) return <>Loading...</>
-  if (error) return <>error here</>
+  if (error) return <>error</>
   return(
     <div className="flex">
       {

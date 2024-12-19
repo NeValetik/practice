@@ -5,7 +5,7 @@ interface ArticleBodyParams {
   fetchedArticle: QueryContentArticleReturn
 } 
 
-export default function ArticleBody({fetchedArticle}:ArticleBodyParams){
+const ArticleBody = ({fetchedArticle}:ArticleBodyParams)=>{
   return(
     
     <div className="p-6 bg-[#FFFFFF] rounded-lg w-full max-w-5xl flex flex-col text-gray-800">
@@ -42,3 +42,5 @@ export default function ArticleBody({fetchedArticle}:ArticleBodyParams){
     </div>
   );
 }
+
+export default ArticleBody;

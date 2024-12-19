@@ -8,8 +8,6 @@ interface BanerParams{
     className?: string;
     isInFeed?:boolean;
     imageClassName?:string;
-
-
 }
 
 export default function Baner({url = null, className='', isInFeed=false, imageClassName=''}:BanerParams){

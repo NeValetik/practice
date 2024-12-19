@@ -55,15 +55,17 @@ export interface QueryContentArticleReturn {
   thumbnail: string;
   parents: Parents[] | [];
 }
-
-const queryContent = gql`
-  query GetData {
+// clientAffiliations @client @export(as: "affiliations")
+// $affiliations
+//$affiliations: [Int]!
+const GET_CONTENTS = gql`
+  query GetData($from: Int, $offset: Int, $affiliations: [Int]!) {
     contents(
         project_id: "5107de83-f208-4ca4-87ed-9b69d58d16e1", 
         lang: "ru", 
-        skip: ${from}, 
-        take: ${offset},
-        affiliations: ${JSON.stringify(affiliations)}
+        skip: $from, 
+        take: $offset,
+        affiliations: $affiliations,
     ) {
         id,
         url,
@@ -85,12 +87,13 @@ const queryContent = gql`
   } 
 `;
 
-export const queryContentArticle = gql`
-    query GetData {
+export const GET_CONTENT = gql`
+    query GetData($full_url:String ) {
       content(
           project_id: "5107de83-f208-4ca4-87ed-9b69d58d16e1", 
           lang: "ru", 
-          id: "${id}",
+          id: "",
+          full_url: $full_url,
         ) {
           id,
           url,
@@ -107,4 +110,4 @@ export const queryContentArticle = gql`
   } 
   `;
 
-export default queryContent; 
+export default GET_CONTENTS; 

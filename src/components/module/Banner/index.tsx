@@ -14,7 +14,7 @@ interface BanerParams{
 
 export default function Baner({url = null, className="", isInFeed=false, imageClassName=""}:BanerParams){
   return(
-    <header
+    <div
       className={"flex flex-col items-center justify-center text-gray-200 text-2xl pt-3"}
     >
       <div className="relative">
@@ -40,7 +40,7 @@ export default function Baner({url = null, className="", isInFeed=false, imageCl
           </div>
         </div>
       }
-    </header>
+    </div>
 
   );
 } 

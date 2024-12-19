@@ -17,10 +17,10 @@ interface FeedFiltersParams{
   setter:React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
+const FeedSourcesFilters = ({value,setter}:FeedFiltersParams) => {
   const [checkbox,setCheckbox] = useState<{
-                                items: Item[];
-                                numberOfOff: number;
+                                  items: Item[];
+                                  numberOfOff: number;
                                 }>
                                 (() => {
                                   const storedItems:Item[]|null = JSON.parse(localStorage.getItem("items") || "[]");
@@ -67,7 +67,8 @@ export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
 
   // const cleanStorage = () =>{
   //     localStorage.removeItem("items");
-  //     localStorage.removeItem("numberOfOff");
+  //     localStorage.removeItem("numberOfOff");  
+  //     localStorage.removeItem("affiliations");
   // }
 
      
@@ -76,40 +77,36 @@ export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
     const handleOnMount = () =>{
       localStorage.setItem("items",JSON.stringify(checkbox.items));
       localStorage.setItem("numberOfOff",checkbox.numberOfOff.toString());
+      localStorage.setItem("affiliations",JSON.stringify(checkbox.items.filter((item:Item) => item.isOn).map((item)=> item.affiliation)))
     }  
     handleOnMount(); 
     // cleanStorage();
   }, [checkbox]);
 
     
-    
-  const handleOnClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
-    const label =(e.target as Element).closest('label'); 
-    if (label) {
-      const labelText = label.getAttribute('id');
-      setCheckbox((prevState) => {
-               
-        const updatedItems = prevState.items.map((item) =>
-          item.name === labelText
-            ? { ...item, isOn: !item.isOn } 
-            : item 
-        );
-                
-        const updatedNumberOfOff = updatedItems.reduce((count, item) => {
-          return !item.isOn ? count + 1 : count;
-        }, 0);
-        setter(updatedNumberOfOff);
-                
-        return { ...prevState, items: updatedItems, numberOfOff: updatedNumberOfOff};
-      });
-    }
+  const handleOnClick = (labelText:string|null) => {
+    setCheckbox((prevState) => {
+              
+      const updatedItems = prevState.items.map((item) =>
+        item.name === labelText
+          ? { ...item, isOn: !item.isOn } 
+          : item 
+      );
+              
+      const updatedNumberOfOff = updatedItems.reduce((count, item) => {
+        return !item.isOn ? count + 1 : count;
+      }, 0);
+      setter(updatedNumberOfOff);
+              
+      return { ...prevState, items: updatedItems, numberOfOff: updatedNumberOfOff};
+    });
   };
   
   const handleClick = (e: React.MouseEvent<HTMLLabelElement, MouseEvent>) =>{
     const label =(e.target as Element).closest('label'); 
     if (label) {
       const labelText = label.getAttribute('id');
-
+      if (labelText !== checkbox.items[0].name) handleOnClick(labelText)
     }
   }
 
@@ -122,26 +119,27 @@ export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
     >
       <div className="py-1 flex-col flex gap-4" role="none">
         {checkbox.items.map((item,index)=>{
-          return (<label
-            id={item.name}
-            className="flex text-sm text-gray-700 
-                                items-center font-body"
-            role="menuitem"
-            onClick={handleClick}
-            key={index}
-          >
-            <div>
-              { item.isOn?
-                <IoCheckboxSharp  className={"w-5 h-5 rounded-full"+' '+(item.color? item.color: "text-[#FF4700]")} />
-                :
-                <IoCheckboxSharp  className={"w-5 h-5 rounded-lg text-white border-[1px]"} />
-              }
-            </div>
-            <div className="ml-2 text-base">
-              {item.text}
-            </div>
-          </label>);
-
+          return (
+            <label
+              id={item.name}
+              className="flex text-sm text-gray-700 
+                                    items-center font-body"
+              role="menuitem"
+              onClick={handleClick}
+              key={index}
+            >
+              <div>
+                { item.isOn?
+                  <IoCheckboxSharp  className={"w-5 h-5 rounded-full"+' '+(item.color? item.color: "text-[#FF4700]")} />
+                  :
+                  <IoCheckboxSharp  className={"w-5 h-5 rounded-lg text-white border-[1px]"} />
+                }
+              </div>
+              <div className="ml-2 text-base">
+                {item.text}
+              </div>
+            </label>
+          );
         })
         }
                        
@@ -150,3 +148,5 @@ export default function FeedSourcesFilters({value,setter}:FeedFiltersParams){
   )
      
 } 
+
+export default FeedSourcesFilters;

@@ -20,7 +20,7 @@ export default function FeedSources(){
   }
 
   return(
-    <>
+    <div className="flex text-base text-gray-500 font-medium font-sans click" >
       <div className={"flex items-center" + " " + (isDropdown&& "text-[#FF4700]")}  onClick={handleOnClick} >
         <Image alt="img" src={!isDropdown ? "/gear.svg" : "/gearorange.svg"} className={"w-[18px] h-[18px] mr-1"} width="1" height="1"></Image>
         <div className="flex-col">
@@ -38,6 +38,6 @@ export default function FeedSources(){
                   <div className="top-0 left-0 fixed w-lvw h-lvh z-10" onClick={handleOnClickOutside}></div>
                 </>
       }
-    </>
+    </div>  
   )
 } 

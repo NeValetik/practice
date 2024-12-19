@@ -9,7 +9,9 @@ interface ApolloProviderProps {
 }
 
 export default function ApolloProvider({ children } : ApolloProviderProps) {
-  return (<Provider client={client}>
-    {children}
-  </Provider>);
+  return (
+    <Provider client={client}>
+      {children}
+    </Provider>
+  );
 }
